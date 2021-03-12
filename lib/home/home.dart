@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:layout_kasir/checkout/number_ticker.dart';
 import 'package:layout_kasir/home/cardmenuset.dart';
 
 class homepage extends StatefulWidget {
@@ -111,11 +112,7 @@ class _homepageState extends State<homepage> {
                     ],
                   ),
                 ),
-              ],
-            ),
-
-            // item kasir 
-            new Container(
+                new Container(
                   margin: EdgeInsets.only(left: 10, right: 10, bottom: 600),
                   child: Column(
                     children: [
@@ -193,8 +190,10 @@ class _homepageState extends State<homepage> {
                     ],
                   ),
                 ),
+              ],
+            ),
 
-
+            // item kasir
 
             DraggableScrollableSheet(
               initialChildSize: 0.5,
@@ -233,6 +232,7 @@ class _homepageState extends State<homepage> {
                           ),
                         ),
                         Container(
+                          margin: EdgeInsets.only(left: 10, right: 10),
                           decoration: const BoxDecoration(
                             border: Border(
                               top: BorderSide(width: 1.0, color: Colors.grey),
@@ -249,33 +249,6 @@ class _homepageState extends State<homepage> {
                                 borderRadius: BorderRadius.circular(10.0),
                               ),
                             ),
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
-                          child: InputDecorator(
-                            decoration: InputDecoration(
-                              labelText: 'Jumlah Dibayarkan',
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                            ),
-                            child: TextField(
-                              decoration: InputDecoration(
-                                  hintText: "masukkan nominal pembayaran"),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.only(top: 20, left: 20, right: 20),
-                          child: InputDecorator(
-                            decoration: InputDecoration(
-                              labelText: 'Jumlah Kembalian',
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                            ),
-                            child: Text('Kembaliannya ada disini'),
                           ),
                         ),
                         new Container(
