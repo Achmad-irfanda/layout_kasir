@@ -1,5 +1,28 @@
 import 'package:flutter/material.dart';
 
+// card yang menampung parsing datanya.
+// class card extends StatefulWidget {
+
+//   card({this.nama, this.harga});
+
+//   @override
+//   _cardState createState() => _cardState();
+// }
+
+// class _cardState extends State<card> {
+//   String item;
+
+//   final Function onTap;
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return
+//   }
+// }
+
+// final Function onTap;
+// const CardItem({Key key, this.onTap}) : super(key:key);
+
 class MenuItem {
   final int id;
   final String nama;
@@ -36,7 +59,7 @@ class _CardItemState extends State<CardItem> {
             });
           },
           title: Text(_menu[index].nama),
-          subtitle: Paddi(child: Text(_menu[index].harga.toString())),
+          subtitle: Text(_menu[index].harga.toString()),
         ),
       ),
     );
