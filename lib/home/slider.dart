@@ -36,6 +36,9 @@ class _sliderState extends State<slider> {
                         fontWeight: FontWeight.bold),
                   ),
                 ),
+                SizedBox(
+                  height: 5,
+                ),
                 Container(
                   margin:
                       EdgeInsets.only(left: 20, right: 20, top: 6, bottom: 20),
@@ -65,43 +68,44 @@ class _sliderState extends State<slider> {
                         fontWeight: FontWeight.bold),
                   ),
                 ),
-                SizedBox(
-                  height: 5,
-                ),
                 Consumer<Item>(builder: (context, provitem, child) {
                   return Container(
-                    padding: EdgeInsets.all(20),
+                    height: 180,
                     margin: EdgeInsets.only(left: 20, right: 20, top: 10),
                     child: ListView.builder(
                         itemCount: provitem.selectedItem.length,
                         itemBuilder: (context, index) {
-                          child:
-                          Container(
-                             padding: EdgeInsets.all(20),
-                          margin: EdgeInsets.only(bottom: 10),
-                            child: Container(
-                              height: 50,
-                              child: Row(
-                                children: [
-                                  Text(provitem.selectedItem[index].nama),
-                                  Spacer(),
-                                  Container(
-                                    margin: EdgeInsets.only(left: 260, right: 10),
-                                    child: NumberTicker(),
-                                  )
-                                ],
-                              ),
+                          return Container(
+                            padding: EdgeInsets.all(15),
+                            margin:
+                                EdgeInsets.only(top: 10, left: 10, right: 10),
+                            child: Row(
+                              children: [
+                                Text(provitem.selectedItem[index].nama,
+                                    style: TextStyle(fontSize: 18)),
+                                Spacer(),
+                                Container(
+                                  margin: EdgeInsets.only(left: 20, right: 10),
+                                  child: NumberTicker(),
+                                )
+                              ],
+                            ),
+                            decoration: BoxDecoration(
+                              border:
+                                  Border.all(width: 1, color: Colors.grey[400]),
+                              borderRadius: BorderRadius.circular(10),
                             ),
                           );
                         }),
                     decoration: BoxDecoration(
-                        border: Border.all(width: 1),
-                        borderRadius: BorderRadius.circular(10)),
+                      border: Border.all(width: 1, color: Colors.grey[400]),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                   );
                 }),
                 new Container(
                     margin: EdgeInsets.only(
-                        left: 50, right: 50, top: 30, bottom: 50),
+                        left: 50, right: 50, top: 30, bottom: 30),
                     child: RaisedButton(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10)),

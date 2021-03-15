@@ -16,11 +16,11 @@ class _homepageState extends State<homepage> {
   String item;
   double total = 0;
 
-  void _pilihitem(String value) {
-    setState(() {
-      item = value;
-    });
-  }
+  // void _pilihitem(String value) {
+  //   setState(() {
+  //     item = value;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -135,6 +135,10 @@ class _homepageState extends State<homepage> {
                         children: [
                           CardItem(
                             nama: ("sambel matah"),
+                            harga: 10000,
+                          ),
+                          CardItem(
+                            nama: ("sambel matah fried chicken ricebowl"),
                             harga: 10000,
                           ),
                           CardItem(
