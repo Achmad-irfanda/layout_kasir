@@ -1,67 +1,67 @@
 import 'package:flutter/material.dart';
+import 'package:layout_kasir/checkout/provitem.dart';
+import 'package:provider/provider.dart';
 
-// card yang menampung parsing datanya.
-// class card extends StatefulWidget {
+// class MenuItem {
+//   final String nama;
+//   final int harga;
 
-//   card({this.nama, this.harga});
-
-//   @override
-//   _cardState createState() => _cardState();
+//   MenuItem(this.nama, this.harga);
 // }
 
-// class _cardState extends State<card> {
-//   String item;
-
-//   final Function onTap;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return
-//   }
-// }
-
-// final Function onTap;
-// const CardItem({Key key, this.onTap}) : super(key:key);
-
-class MenuItem {
-  final int id;
+  class CardItem extends StatefulWidget {
+  
+  CardItem ({this.nama, this.harga});
+  
   final String nama;
   final int harga;
-
-  MenuItem(this.id, this.nama, this.harga);
-}
-
-class CardItem extends StatefulWidget {
   @override
   _CardItemState createState() => _CardItemState();
 }
 
 class _CardItemState extends State<CardItem> {
-  final _menu = [
-    MenuItem(1, "nasi liwet", 20000),
-  ];
-
-  List<MenuItem> _selectedItem = [];
-  int totalHarga = 0;
-
+  
   @override
   Widget build(BuildContext context) {
     return Card(
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(10))),
-      child: ListView.builder(
-        itemCount: _menu.length,
-        itemBuilder: (context, index) => ListTile(
-          onTap: () {
-            setState(() {
-              _selectedItem.add(_menu[index]);
-              totalHarga = totalHarga + _menu[index].harga;
-            });
+      child: InkWell(
+        onTap: () => {
+            Provider.of<Item>(context, listen: false)
+                .add(CardItem(), CardItem().harga),
           },
-          title: Text(_menu[index].nama),
-          subtitle: Text(_menu[index].harga.toString()),
+        child: ListView(
+          children: [
+            Align(
+              alignment: Alignment.topLeft,
+              child: Container(
+                margin:
+                    EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 20),
+                child: 
+               Text(widget.nama, style: TextStyle(fontSize: 18),)
+              ),
+            ),
+            Align(
+              alignment: Alignment.topLeft,
+              child: Container(
+                margin:
+                    EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 20),
+                child: 
+               Text(widget.harga.toString(), style: TextStyle(fontSize: 18),)
+              ),
+            ),
+          ],
         ),
       ),
     );
   }
 }
+
+
+// class onTap {
+  
+  
+//   Provider.of<Item>(context, listen: false)
+//                 .add(CardItem[index], CardItem[index].harga);
+// }

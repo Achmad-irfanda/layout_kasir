@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:layout_kasir/checkout/bayar.dart';
+import 'package:provider/provider.dart';
+import 'package:layout_kasir/checkout/provitem.dart';
 import 'package:layout_kasir/checkout/number_ticker.dart';
 
 class slider extends StatefulWidget {
@@ -38,7 +40,7 @@ class _sliderState extends State<slider> {
                   margin:
                       EdgeInsets.only(left: 20, right: 20, top: 6, bottom: 20),
                   child: Text(
-                    "RP. ",
+                    "RP. ${Provider.of<Item>(context, listen: true).totalHarga}",
                     style: TextStyle(
                         fontSize: 22,
                         color: Colors.purple[900],
@@ -63,22 +65,40 @@ class _sliderState extends State<slider> {
                         fontWeight: FontWeight.bold),
                   ),
                 ),
-                Container(
-                  padding: EdgeInsets.all(20),
-                  margin: EdgeInsets.only(left: 20, right: 20, top: 10),
-                  child: Row(
-                    children: [
-                      // Text("namaku bento"),
-                      Container(
-                        margin: EdgeInsets.only(left: 260, right: 10),
-                        child: NumberTicker(),
-                      )
-                    ],
-                  ),
-                  decoration: BoxDecoration(
-                      border: Border.all(width: 1),
-                      borderRadius: BorderRadius.circular(10)),
+                SizedBox(
+                  height: 5,
                 ),
+                Consumer<Item>(builder: (context, provitem, child) {
+                  return Container(
+                    padding: EdgeInsets.all(20),
+                    margin: EdgeInsets.only(left: 20, right: 20, top: 10),
+                    child: ListView.builder(
+                        itemCount: provitem.selectedItem.length,
+                        itemBuilder: (context, index) {
+                          child:
+                          Container(
+                             padding: EdgeInsets.all(20),
+                          margin: EdgeInsets.only(bottom: 10),
+                            child: Container(
+                              height: 50,
+                              child: Row(
+                                children: [
+                                  Text(provitem.selectedItem[index].nama),
+                                  Spacer(),
+                                  Container(
+                                    margin: EdgeInsets.only(left: 260, right: 10),
+                                    child: NumberTicker(),
+                                  )
+                                ],
+                              ),
+                            ),
+                          );
+                        }),
+                    decoration: BoxDecoration(
+                        border: Border.all(width: 1),
+                        borderRadius: BorderRadius.circular(10)),
+                  );
+                }),
                 new Container(
                     margin: EdgeInsets.only(
                         left: 50, right: 50, top: 30, bottom: 50),
