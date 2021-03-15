@@ -1,57 +1,42 @@
 import 'package:flutter/material.dart';
 
-// card yang menampung parsing datanya.
-class card extends StatefulWidget {
-  card({this.nama, this.harga});
-
+class MenuItem {
+  final int id;
   final String nama;
-  final String harga;
+  final int harga;
 
-  @override
-  _cardState createState() => _cardState();
+  MenuItem(this.id, this.nama, this.harga);
 }
 
-class _cardState extends State<card> {
-  String item;
+class CardItem extends StatefulWidget {
+  @override
+  _CardItemState createState() => _CardItemState();
+}
+
+class _CardItemState extends State<CardItem> {
+  final _menu = [
+    MenuItem(1, "nasi liwet", 20000),
+  ];
+
+  List<MenuItem> _selectedItem = [];
+  int totalHarga = 0;
 
   @override
   Widget build(BuildContext context) {
     return Card(
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(10))),
-      child: InkWell(
-        // onTap: () {
-
-        // },
-        child: ListView(
-          children: [
-            Align(
-              alignment: Alignment.topLeft,
-              child: Container(
-                margin:
-                    EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 20),
-                child: Column(
-                  children: [
-                    Text(
-                      widget.nama,
-                      style: TextStyle(fontSize: 18),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Align(
-              alignment: Alignment.bottomLeft,
-              child: Container(
-                margin:
-                    EdgeInsets.only(left: 10, right: 10, top: 20, bottom: 10),
-                child: Text(
-                  widget.harga,
-                  style: TextStyle(fontSize: 18),
-                ),
-              ),
-            ),
-          ],
+      child: ListView.builder(
+        itemCount: _menu.length,
+        itemBuilder: (context, index) => ListTile(
+          onTap: () {
+            setState(() {
+              _selectedItem.add(_menu[index]);
+              totalHarga = totalHarga + _menu[index].harga;
+            });
+          },
+          title: Text(_menu[index].nama),
+          subtitle: Paddi(child: Text(_menu[index].harga.toString())),
         ),
       ),
     );

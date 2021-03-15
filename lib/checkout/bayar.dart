@@ -44,7 +44,13 @@ class _bayarState extends State<bayar> {
             child: TextField(
                 keyboardType: TextInputType.number,
                 decoration: new InputDecoration(
-                    labelText: "Jumlah Pembayaran (RP)",
+                    prefix: Text(
+                      "RP. ",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.purple[900]),
+                    ),
+                    labelText: "Jumlah Pembayaran",
                     border: new OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10)))),
           ),
