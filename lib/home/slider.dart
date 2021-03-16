@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:layout_kasir/checkout/bayar.dart';
+import 'package:layout_kasir/main.dart';
 import 'package:provider/provider.dart';
 import 'package:layout_kasir/checkout/provitem.dart';
 import 'package:layout_kasir/checkout/number_ticker.dart';
@@ -12,7 +13,6 @@ class BottomSlider extends StatefulWidget {
 class _BottomSliderState extends State<BottomSlider> {
   @override
   Widget build(BuildContext context) {
-
     var items = Provider.of<Item>(context);
 
     return DraggableScrollableSheet(
@@ -71,44 +71,52 @@ class _BottomSliderState extends State<BottomSlider> {
                         fontWeight: FontWeight.bold),
                   ),
                 ),
-
                 Container(
-                    height: 180,
-                    margin: EdgeInsets.only(left: 20, right: 20, top: 10),
-                    child: ListView.builder(
-                        itemCount: items.selectedItem.length,
-                        itemBuilder: (context, index) {
-                          var item = items.selectedItem[index];
-                          return Container(
-                            padding: EdgeInsets.all(15),
-                            margin:
-                                EdgeInsets.only(top: 10, left: 10, right: 10),
-                            child: Row(
-                              children: [
-                                SingleChildScrollView(
-                                  child: SizedBox(
-                                    width: 250,
-                                    child: Text(
-                                        item.nama,
-                                        style: TextStyle(fontSize: 18)),
-                                  ),
+                  height: 180,
+                  margin: EdgeInsets.only(left: 20, right: 20, top: 10),
+                  child: ListView.builder(
+                      itemCount: items.selectedItem.length,
+                      itemBuilder: (context, index) {
+                        var item = items.selectedItem[index];
+                        return Container(
+                          padding: EdgeInsets.all(15),
+                          margin: EdgeInsets.only(top: 10, left: 10, right: 10),
+                          child: Row(
+                            children: [
+                              IconButton(
+                                icon: Icon(
+                                  Icons.delete,
+                                  color: Colors.purple[900],
                                 ),
-                                Spacer(),
-                                NumberTicker()
-                              ],
-                            ),
-                            decoration: BoxDecoration(
-                              border:
-                                  Border.all(width: 1, color: Colors.grey[400]),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          );
-                        }),
-                    decoration: BoxDecoration(
-                      border: Border.all(width: 1, color: Colors.grey[400]),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
+                                onPressed: () {
+                                  Provider.of<Item>(context, listen: false)
+                                      .remove(item.id);
+                                },
+                                iconSize: 30,
+                              ),
+                              SingleChildScrollView(
+                                child: SizedBox(
+                                  width: 160,
+                                  child: Text(item.nama,
+                                      style: TextStyle(fontSize: 18)),
+                                ),
+                              ),
+                              Spacer(),
+                              NumberTicker()
+                            ],
+                          ),
+                          decoration: BoxDecoration(
+                            border:
+                                Border.all(width: 1, color: Colors.grey[400]),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        );
+                      }),
+                  decoration: BoxDecoration(
+                    border: Border.all(width: 1, color: Colors.grey[400]),
+                    borderRadius: BorderRadius.circular(10),
                   ),
+                ),
                 new Container(
                     margin: EdgeInsets.only(
                         left: 50, right: 50, top: 30, bottom: 30),
@@ -119,9 +127,10 @@ class _BottomSliderState extends State<BottomSlider> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => Bayar(
-                            totalHarga: items.totalHarga,
-                          )),
+                          MaterialPageRoute(
+                              builder: (context) => Bayar(
+                                    totalHarga: items.totalHarga,
+                                  )),
                         );
                       },
                       child: Padding(

@@ -2,18 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:layout_kasir/checkout/provitem.dart';
 import 'package:provider/provider.dart';
 
-// class MenuItem {
-//   final String nama;
-//   final int harga;
-
-//   MenuItem(this.nama, this.harga);
-// }
-
-class CardItem extends StatefulWidget {
-  CardItem({this.nama, this.harga});
-
+class MenuItem {
   final String nama;
   final int harga;
+  final int id;
+
+  MenuItem(this.id, this.nama, this.harga);
+}
+
+class CardItem extends StatefulWidget {
+  CardItem({ this.menuItem });
+
+  final MenuItem menuItem;
+
   @override
   _CardItemState createState() => _CardItemState();
 }
@@ -27,9 +28,9 @@ class _CardItemState extends State<CardItem> {
       child: InkWell(
         onTap: () => {
           Provider.of<Item>(context, listen: false).add(
-              CardItem(nama: widget.nama, harga: widget.harga), widget.harga),
+              MenuItem(widget.menuItem.id, widget.menuItem.nama, widget.menuItem.harga)
+          ),
         },
-        
         child: ListView(
           children: [
             Align(
@@ -38,7 +39,7 @@ class _CardItemState extends State<CardItem> {
                 margin:
                     EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 20),
                 child: Text(
-                  widget.nama,
+                  widget.menuItem.nama,
                   style: TextStyle(fontSize: 18),
                 ),
               ),
@@ -49,7 +50,7 @@ class _CardItemState extends State<CardItem> {
                 margin:
                     EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 20),
                 child: Text(
-                  widget.harga.toString(),
+                 widget.menuItem.harga.toString(),
                   style: TextStyle(fontSize: 18),
                 ),
               ),

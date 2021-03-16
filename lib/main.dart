@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:layout_kasir/checkout/bayar.dart';
 import 'package:layout_kasir/checkout/provitem.dart';
 import 'package:layout_kasir/home/home.dart';
 import 'package:provider/provider.dart';
