@@ -134,21 +134,37 @@ class _homepageState extends State<homepage> {
                         childAspectRatio: 6 / 3,
                         children: [
                           CardItem(
-                            nama: ("sambel matah"),
-                            harga: 10000,
-                          ),
-                          CardItem(
-                            nama: ("sambel matah fried chicken ricebowl"),
-                            harga: 10000,
-                          ),
-                          CardItem(
-                            nama: ("sambel baru"),
-                            harga: 10000,
-                          ),
-                          CardItem(
-                            nama: ("sambel hijau"),
+                            nama: ("sambel matah Chicken Ricebowl"),
                             harga: 20000,
-                          )
+                          ),
+                          CardItem(
+                            nama: ("Chicken Ricebowl"),
+                            harga: 20000,
+                          ),
+                          CardItem(
+                            nama: ("Tuna Ricebowl"),
+                            harga: 20000,
+                          ),
+                          CardItem(
+                            nama: ("Nasi Goreng Spesial"),
+                            harga: 20000,
+                          ),
+                          CardItem(
+                            nama: ("Espresso"),
+                            harga: 20000,
+                          ),
+                          CardItem(
+                            nama: ("Caffe Latte"),
+                            harga: 20000,
+                          ),
+                          CardItem(
+                            nama: ("Hot/Ice Lemon Tea"),
+                            harga: 8000,
+                          ),
+                          CardItem(
+                            nama: ("Ice Butterfly Coffe"),
+                            harga: 20000,
+                          ),
                         ],
                       ),
                     ],
@@ -158,7 +174,7 @@ class _homepageState extends State<homepage> {
             ),
 
             // total pembayaran
-            slider(),
+            BottomSlider(),
           ],
         ),
       ),

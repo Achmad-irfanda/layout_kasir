@@ -29,6 +29,7 @@ class _CardItemState extends State<CardItem> {
           Provider.of<Item>(context, listen: false).add(
               CardItem(nama: widget.nama, harga: widget.harga), widget.harga),
         },
+        
         child: ListView(
           children: [
             Align(

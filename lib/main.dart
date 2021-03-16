@@ -1,8 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:layout_kasir/checkout/bayar.dart';
+import 'package:layout_kasir/checkout/provitem.dart';
 import 'package:layout_kasir/home/home.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(provider());
+}
+
+class provider extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<Item>(
+          create: (_) =>  Item(),
+        ),
+        ],
+      child: MyApp(),
+    );
+  }
 }
 
 class MyApp extends StatelessWidget {

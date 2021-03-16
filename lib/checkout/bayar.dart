@@ -1,11 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:layout_kasir/checkout/provitem.dart';
 
-class bayar extends StatefulWidget {
+class Bayar extends StatefulWidget {
+
+  final int totalHarga;
+
+  Bayar({ this.totalHarga = 0 });
+
   @override
-  _bayarState createState() => _bayarState();
+  _BayarState createState() => _BayarState();
 }
 
-class _bayarState extends State<bayar> {
+class _BayarState extends State<Bayar> {
+  int totalHarga;
+
+  @override
+  void didChangeDependencies() {
+    var item = Provider.of<Item>(context);
+    print(item.totalHarga);
+    super.didChangeDependencies();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,12 +43,16 @@ class _bayarState extends State<bayar> {
       ),
       body: new ListView(
         children: [
+          //FIXME bagian ini masih eror
           Container(
             margin: EdgeInsets.only(top: 20, left: 20, right: 20),
             padding: EdgeInsets.all(20),
             child: Text(
-              "count item",
-              style: TextStyle(fontStyle: FontStyle.italic),
+              "RP ${widget.totalHarga}",
+              style: TextStyle(
+                  fontSize: 22,
+                  color: Colors.purple[900],
+                  fontWeight: FontWeight.bold),
             ),
             decoration: BoxDecoration(
               border: Border.all(width: 0.1),
@@ -85,9 +105,10 @@ class _bayarState extends State<bayar> {
                     borderRadius: BorderRadius.circular(10)),
                 color: Colors.purple[900],
                 onPressed: () {
+                  
                   Navigator.of(context).push(
                     new MaterialPageRoute(
-                      builder: (BuildContext context) => bayar(),
+                      builder: (BuildContext context) => Bayar(),
                     ),
                   );
                 },

@@ -4,14 +4,17 @@ import 'package:provider/provider.dart';
 import 'package:layout_kasir/checkout/provitem.dart';
 import 'package:layout_kasir/checkout/number_ticker.dart';
 
-class slider extends StatefulWidget {
+class BottomSlider extends StatefulWidget {
   @override
-  _sliderState createState() => _sliderState();
+  _BottomSliderState createState() => _BottomSliderState();
 }
 
-class _sliderState extends State<slider> {
+class _BottomSliderState extends State<BottomSlider> {
   @override
   Widget build(BuildContext context) {
+
+    var items = Provider.of<Item>(context);
+
     return DraggableScrollableSheet(
       initialChildSize: 0.1,
       minChildSize: 0.1,
@@ -68,26 +71,30 @@ class _sliderState extends State<slider> {
                         fontWeight: FontWeight.bold),
                   ),
                 ),
-                Consumer<Item>(builder: (context, provitem, child) {
-                  return Container(
+
+                Container(
                     height: 180,
                     margin: EdgeInsets.only(left: 20, right: 20, top: 10),
                     child: ListView.builder(
-                        itemCount: provitem.selectedItem.length,
+                        itemCount: items.selectedItem.length,
                         itemBuilder: (context, index) {
+                          var item = items.selectedItem[index];
                           return Container(
                             padding: EdgeInsets.all(15),
                             margin:
                                 EdgeInsets.only(top: 10, left: 10, right: 10),
                             child: Row(
                               children: [
-                                Text(provitem.selectedItem[index].nama,
-                                    style: TextStyle(fontSize: 18)),
+                                SingleChildScrollView(
+                                  child: SizedBox(
+                                    width: 250,
+                                    child: Text(
+                                        item.nama,
+                                        style: TextStyle(fontSize: 18)),
+                                  ),
+                                ),
                                 Spacer(),
-                                Container(
-                                  margin: EdgeInsets.only(left: 20, right: 10),
-                                  child: NumberTicker(),
-                                )
+                                NumberTicker()
                               ],
                             ),
                             decoration: BoxDecoration(
@@ -101,8 +108,7 @@ class _sliderState extends State<slider> {
                       border: Border.all(width: 1, color: Colors.grey[400]),
                       borderRadius: BorderRadius.circular(10),
                     ),
-                  );
-                }),
+                  ),
                 new Container(
                     margin: EdgeInsets.only(
                         left: 50, right: 50, top: 30, bottom: 30),
@@ -111,10 +117,11 @@ class _sliderState extends State<slider> {
                           borderRadius: BorderRadius.circular(10)),
                       color: Colors.purple[900],
                       onPressed: () {
-                        Navigator.of(context).push(
-                          new MaterialPageRoute(
-                            builder: (BuildContext context) => bayar(),
-                          ),
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Bayar(
+                            totalHarga: items.totalHarga,
+                          )),
                         );
                       },
                       child: Padding(
